@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title> Get Domain
+	<title>Get Domain
 	</title>
 
 </head>
@@ -26,6 +26,15 @@ $(function () {
 		if (textValue.length==0){
 			return;
 		}
+		//$.post is a jquery function which is formatted as jQuery.post( url [, data] [, success(data, textStatus, jqXHR)] [, dataType] ).
+		// the [] just show the options. We do not use the brackets, they mean optional. So you CAN add data, success, dataType but they are optional.
+		$.post("http://domainsearch.racistpanda.com", //url [, 
+			{ domain: textValue }, // data] [, //made the domain the string textValue using JSON
+			function(data) { // success(data) - Success is only using the first of the three arguments. You can have up to 3
+				console.log(data); //this is what happens if the Post is successful. What is does if it is successful is chosen by the programmer. In this case we are logging to the console. The data returned by the server from our posting is the entity being logged.
+			},
+			"json" //dataType. This could alternatively be XML
+			);
 
 		var newItem = $('<div>', { class: "listItem", text: textValue}); // newItem is a jquery object that represents a div with class=listItem and has the text in the var textValue as its text
 		
@@ -75,7 +84,7 @@ div.completed {
 
 
 	<h1>
-		To-Do List
+		Get Domain
 	</h1>
 	<div>
 		<input type="text" id="mytextbox" value="" class="listItem"/> <!-- test of css class styling -->
