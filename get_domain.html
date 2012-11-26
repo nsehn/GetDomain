@@ -1,0 +1,95 @@
+<html>
+
+<head>
+	<title> Get Domain
+	</title>
+
+</head>
+
+<script src="jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript">
+
+var ourList = []
+
+// If you see '$', it's jquery, not plain javascript, so make sure jquery library is included
+$(function () {
+
+	for (var i= 0; i< ourList.length; i++ ){
+		var ourItem = ourList[i];
+		$("#container").append("<div class = 'listItem'>" + ourItem + "</div>");
+		// $("#container") is analogous to document.getElementById("container")
+	}
+
+	$("#addButton").click(function(){
+		var textValue = $("#mytextbox").val();
+		if (textValue.length==0){
+			return;
+		}
+
+		var newItem = $('<div>', { class: "listItem", text: textValue}); // newItem is a jquery object that represents a div with class=listItem and has the text in the var textValue as its text
+		
+		newItem.click(function () {
+			// If you want to do something when you click on the list, you put that code here;
+		});
+
+		$("#container").append(newItem); // Append can take a jquery object or DOM element as well as an HTML string like above. This acts as the same thing in line 20, jquery knows to do that
+		$('#mytextbox').val(''); 
+		// The line above clears the textbox
+
+	});
+
+	$("#mytextbox").keyup(function(event){ //This allows the new list item to be added to the list by pressing the Enter key
+		if(event.keyCode == 13){
+			$("#addButton").click();
+		}
+	});
+
+});
+
+
+</script>
+
+
+<style>
+
+div {
+	border-style: solid;
+	border-width: 1px;
+	padding: 20px
+}
+
+.listItem { /*the dot means this style applies to elements with class="listItem"*/
+color:red
+}
+h1 {
+	text-align: center
+}
+
+div.completed {
+	text-decoration: line-through;
+}
+</style>
+
+<body>
+
+
+	<h1>
+		To-Do List
+	</h1>
+	<div>
+		<input type="text" id="mytextbox" value="" class="listItem"/> <!-- test of css class styling -->
+		<input type="button" id="addButton" value="Add" /> 
+		<!-- onclick looks for the named function (addTask() in this case) in your javascript code and runs it if its there. These two lines are in HTML because it is just a physical box, it calls a javascript function to allow a user to enter data -->
+	</div>
+	<div id="container">
+	</div>
+
+
+</body>
+
+
+
+
+
+</html>
