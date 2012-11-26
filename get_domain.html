@@ -31,9 +31,10 @@ $(function () {
 		$.post("http://domainsearch.racistpanda.com", //url [, 
 			{ domain: textValue }, // data] [, //made the domain the string textValue using JSON
 			function(data) { // success(data) - Success is only using the first of the three arguments. You can have up to 3
+				$("#container").append("<div class = 'listItem'>" + data.state + "</div>");
 				console.log(data); //this is what happens if the Post is successful. What is does if it is successful is chosen by the programmer. In this case we are logging to the console. The data returned by the server from our posting is the entity being logged.
 			},
-			"json" //dataType. This could alternatively be XML
+			"json" //dataType. This could alternatively be XML. These are strings, but also JavaScript objects. They can be manipulated like objects. Ex: data.state
 			);
 
 		var newItem = $('<div>', { class: "listItem", text: textValue}); // newItem is a jquery object that represents a div with class=listItem and has the text in the var textValue as its text
