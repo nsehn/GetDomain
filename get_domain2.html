@@ -1,0 +1,103 @@
+<html>
+
+	<head>
+		<title>Get Domain
+		</title>
+	
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+	</head>
+
+	<script src="jquery-1.8.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+	var ourList = [];
+
+
+	
+	$(function () {
+		for (var i= 0; i< ourList.length; i++ ){
+			var ourItem = ourList[i];
+			$("#container").append("<div class = 'listItem'>" + ourItem + "</div>"); // $("#container") is analogous to document.getElementById("container")
+		}
+
+		$("#addButton").click(function(){
+			var textValue = $("#mytextbox").val();
+			if (textValue.length==0){
+				return;
+			}
+			
+			$.post("http://domainsearch.racistpanda.com", 
+				{ domain: textValue }, 
+				function(data) {
+					$('#Domains_table > tbody:last').append("<tr> <td>" + data.domain + "</td> <td>" + data.state + "</td> </tr>");
+					console.log(data); 
+				},
+				"json" 
+			);
+
+			var newItem = $('<div>', { class: "listItem", text: textValue}); 
+		
+			newItem.click(function () {
+				// If you want to do something when you click on the list, you put that code here;
+			});
+
+			$("#container").append(newItem); 
+			$('#mytextbox').val(''); 
+			// The line above clears the textbox
+		});
+
+		$("#mytextbox").keyup(function(event){ //This allows the new list item to be added to the list by pressing the Enter key
+			if(event.keyCode == 13){
+				$("#addButton").click();
+			}
+		});
+	});
+	</script>
+
+	<style>
+
+	div {
+		padding: 20px;
+	}
+
+	h1 {
+		text-align: center
+	}
+	h3 {
+		color: pink
+	}
+	</style>
+
+	<body>
+
+		<h1>
+			Get Domain
+		</h1>
+		<h3>
+			Enter in a website and see if it is available! 
+		</h3>
+	
+		<div>
+			<input type="text" id="mytextbox" value="" /> 
+			<input type="button" id="addButton" value="Add" /> 
+		</div>
+	
+		<table class="table table-bordered" id="Domains_table">
+		      <thead> 
+		         <tr>
+		          	<th>Domain</th>
+		          	<th>State</th>
+		       	 </tr>
+		      </thead>
+		      
+		      <tbody id="result">
+
+		      </tbody>
+
+		 </table>
+
+	</body>
+
+</html>
