@@ -62,12 +62,17 @@
 		padding: 20px;
 	}
 
-	h1 {
-		text-align: center
+	h1, h4 {
+		text-align: center;
 	}
-	h3 {
-		color: pink
+	
+	.centered_div{
+	  width: 280px;
+ 	 margin-left: auto;
+ 	 margin-right:  auto;
 	}
+
+
 	</style>
 
 	<body>
@@ -75,13 +80,13 @@
 		<h1>
 			Get Domain
 		</h1>
-		<h3>
+		<h4>
 			Enter in a website and see if it is available! 
-		</h3>
+		</h4>
 	
-		<div>
+		<div class="centered_div">
 			<input type="text" id="mytextbox" value="" /> 
-			<input type="button" id="addButton" value="Add" /> 
+			<input type="button" class="btn btn-info" id="addButton" value="Add" /> 
 		</div>
 	
 		<table class="table table-bordered" id="Domains_table">
