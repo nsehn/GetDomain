@@ -28,13 +28,15 @@
 				return;
 			}
 			
-			$.post("http://domainsearch.racistpanda.com", 
-				{ domain: textValue }, 
+			$.post("http://localhost:4567/searchedDomain/", 
+				{ domain: textValue }, //this javascript code makes the user input from the website into json
+										//which here is shown as {domain: textValue}
 				function(data) {
 					$('#Domains_table > tbody:last').append("<tr> <td>" + data.domain + "</td> <td>" + data.state + "</td> </tr>");
 					console.log(data); 
 				},
-				"json" 
+				"json" // This json is a bunch of text formatted in a specific way coming
+						//from the server to (data)
 			);
 
 			var newItem = $('<div>', { class: "listItem", text: textValue}); 
@@ -106,3 +108,5 @@
 	</body>
 
 </html>
+
+<!-- The Javascript is client code and is the front end. The Ruby hi.rb is the back end, it's the server code. The client has no idea what this is Ruby code. All the client knows that the client sent and received JSON from the server. -->
