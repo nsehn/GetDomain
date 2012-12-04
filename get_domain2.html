@@ -32,8 +32,9 @@
 				{ domain: textValue }, //this javascript code makes the user input from the website into json
 										//which here is shown as {domain: textValue}
 				function(data) {
-					$('#Domains_table > tbody:last').append("<tr> <td>" + data.domain + "</td> <td>" + data.state + "</td> </tr>");
 					console.log(data); 
+					$('#Domains_table > tbody:last').append("<tr> <td>" + data.domain + "</td> <td>" + data.state + "</td> </tr>");
+					
 				},
 				"json" // This json is a bunch of text formatted in a specific way coming
 						//from the server to (data)
